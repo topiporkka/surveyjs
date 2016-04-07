@@ -12,6 +12,7 @@
         questionRemoved(question: IQuestion);
         validateQuestion(name: string): SurveyError;
         isDesignMode: boolean;
+        requiredText: string;
     }
     export interface IQuestion {
         name: string;

@@ -24,7 +24,7 @@ var paths = {
     dist: "./dist/",
     package_ko_dist: "./packages/survey-knockout/dist/",
     package_ko_bootstrap_dist: "./packages/survey-knockout-bootstrap/dist/",
-    ts: ["./src/*.ts"],
+    ts: ["./src/*.ts", "./src/react/*.tsx"],
     typings: "./typings/**/*.d.ts",
     tsTests: "./tests/*.ts",
     tsTests_ko: "./tests/ko/*.ts",
@@ -85,8 +85,9 @@ gulp.task('tsd', function (callback) {
                .pipe(ts({
                    target: "ES5",
                    noImplicitAny: false,
-                   declarationFiles: true
-                }));
+                   declarationFiles: true,
+                   jsx: "react"
+            }));
 
             return tsResult.js
                 .pipe(concat('survey.js'))
@@ -105,7 +106,8 @@ gulp.task('tsd', function (callback) {
                .pipe(ts({
                    target: "ES5",
                    noExternalResolve: true,
-                   declaration: true
+                   declaration: true,
+                   jsx: "react"
                }));
 
             return tscResult.dts

@@ -59,6 +59,7 @@ module Survey {
             }
         }
         get visibleIndex(): number { return this.visibleIndexValue; }
+        get requiredText(): string { return this.data != null ? this.data.requiredText : ""; }
         get hasComment(): boolean { return this.hasCommentValue; }
         set hasComment(val: boolean) {
             if (!this.supportComment()) return;
