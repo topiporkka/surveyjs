@@ -11,9 +11,45 @@ class ReactSurveyQuestionmultipletext extends React.Component<any, any> {
     }
     render(): JSX.Element {
         if (!this.question) return null;
+        var rows = [];
+        for (var i = 0; i < this.question.items.length; i++) {
+            var item = this.question.items[i];
+            var key = "item" + i;
+            rows.push(<ReactSurveyQuestionmultipletextItem key={key} item={item} />);
+        }
         return (
-            <div>
-            </div>
+            <table>
+                <tbody>
+                {rows}
+                </tbody>
+            </table>
+        );
+    }
+}
+
+class ReactSurveyQuestionmultipletextItem extends React.Component<any, any> {
+    private item: Survey.MultipleTextItem;
+    constructor(props: any) {
+        super(props);
+        this.item = props.item;
+        this.state = { value: this.item.value };
+        this.handleOnChange = this.handleOnChange.bind(this);
+    }
+    handleOnChange(event) {
+        this.item.value = event.target.value;
+        this.setState({ value: this.item.value });
+    }
+    componentWillReceiveProps(nextProps: any) {
+        this.item = nextProps.item;
+    }
+    render(): JSX.Element {
+        if (!this.item) return null;
+        return (
+            <tr>
+                <td>{this.item.title}</td>
+                <td><input type="text" value={this.state.value} onChange={this.handleOnChange} /></td>
+            </tr>
+            
         );
     }
 }

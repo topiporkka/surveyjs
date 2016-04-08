@@ -43,11 +43,11 @@ class ReactSurvey extends React.Component<any, any> {
         });
         this.survey.onValueChanged.add((sender, options) => {
             if (!newProps) return;
-            if (newProps.onValueChanged) {
-                newProps.onValueChanged(sender, options);
-            }
             if (newProps.data) {
                 newProps.data[options.name] = options.value;
+            }
+            if (newProps.onValueChanged) {
+                newProps.onValueChanged(sender, options);
             }
         });
     }

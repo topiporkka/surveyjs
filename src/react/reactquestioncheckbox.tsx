@@ -63,8 +63,8 @@ class ReactSurveyQuestioncheckboxItem extends React.Component<any, any> {
             comment = <div><ReactSurveyQuestionCommentItem question={this.question}/></div>
         }
         return (
-            <div class="sv_qcbc" style={divStyle}>
-                <label class="sv_q_checkbox">
+            <div className="sv_qcbc" style={divStyle}>
+                <label className="sv_q_checkbox">
                     <input type="checkbox"  checked={isChecked} onChange={this.handleOnChange} />
                     <span>{this.item.text}</span>
                     </label>
@@ -73,18 +73,3 @@ class ReactSurveyQuestioncheckboxItem extends React.Component<any, any> {
         );
     }
 }
-
-/*
-    <!--ko foreach: { data: question.visibleChoices, as: 'item', afterRender: question.koAfterRender } -->
-    <div class="sv_qcbc"  data-bind="style:{width: question.koWidth}">
-            <label class="sv_q_checkbox">
-                <input type="checkbox"
-                    data-bind="value: item.value, checked: question.koValue" />
-                <span data-bind="text: item.text"></span>
-                </label>
-        </div>
-    < !-- /ko -->
-    < div data- bind="if:question.hasOther" >
-        <div data-bind="template: { name: 'survey-comment', data: {'question': question, 'visible': question.koOtherVisible } }"></div>
-    </div >
-*/

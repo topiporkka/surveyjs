@@ -129,7 +129,7 @@ module Survey {
             return new ValidatorRunner().run(this);
         }
         private isValueChangedInSurvey = false;
-        private setNewValue(newValue: any) {
+        protected setNewValue(newValue: any) {
             if (this.isValueChangedInSurvey) return;
             if (this.data != null) {
                 this.data.setValue(this.name, newValue);
