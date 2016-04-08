@@ -15,11 +15,15 @@ class ReactSurvey extends React.Component<any, any> {
         this.updateSurvey(nextProps);
     }
     render(): JSX.Element {
-        var title = this.survey.title ? <p>{this.survey.title}</p> : null;
-        var currentPage = this.survey.currentPage ? <ReactSurveyPage page={this.survey.currentPage} /> : null;
-        var buttons = <ReactSurveyButtons survey = {this.survey} />
+        var title = this.survey.title && this.survey.showTitle ? <h2>{this.survey.title}</h2> : null;
+        var currentPage = this.survey.currentPage ? <ReactSurveyPage survey={this.survey} page={this.survey.currentPage} /> : null;
+        var buttons = (currentPage) ? <ReactSurveyButtons survey = {this.survey} /> : null;
+        if (!currentPage) {
+            currentPage = <span>There is no any visible page or visible question in the survey.</span>;
+        }
+        
         return (
-            <div>
+            <div className="sv_main">
             {title}
             {currentPage}
             {buttons}
@@ -83,7 +87,7 @@ class ReactSurveyButtons extends React.Component<any, any> {
         var nextButton = !this.survey.isLastPage ? <input type="button" onClick={this.handleNextClick} value={this.survey.pageNextText} /> : null;
         var completeButton = this.survey.isLastPage ? <input type="button" onClick={this.handleCompleteClick} value={this.survey.completeText} /> : null;
         return (
-            <div>
+            <div className="sv_nav">
                 {prevButton}
                 {nextButton}
                 {completeButton}
