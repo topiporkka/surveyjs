@@ -45,6 +45,11 @@ class ReactSurvey extends React.Component<any, any> {
         this.survey.onCurrentPageChanged.add((sender, options) => {
             self.changeState();
         });
+        this.survey.onVisibleChanged.add((sender, options) => {
+            if (options.question && options.question.react) {
+                options.question.react.forceUpdate(); //TODO
+            }
+        });
         this.survey.onValueChanged.add((sender, options) => {
             if (!newProps) return;
             if (newProps.data) {

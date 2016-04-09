@@ -10,7 +10,9 @@ class ReactSurveyQuestion extends React.Component<any, any> {
         this.question = nextProps.question;
     }
     render(): JSX.Element {
-        if (!this.question || !this.question.visible) return null;
+        if (!this.question) return null;
+        this.question["react"] = this; //TODO
+        if (!this.question.visible) return null;
         var title = this.renderTitle();
         var className = "ReactSurveyQuestion" + this.question.getType();
         var questionRender = React.createElement(window[className], { question: this.question });
